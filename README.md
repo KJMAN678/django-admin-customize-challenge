@@ -6,6 +6,11 @@
 - GitHub の Settings > Secrets and variables > Actions > New repository secret で ANTHROPIC_API_KEY を追加
 - Claude Code の対象リポジトリに追加する
 
+http://localhost:8000/admin/
+
+- 参考
+  - [Django 管理サイトをカスタマイズする前に教えてほしかったこと](https://speakerdeck.com/akiyoko/how-to-customize-admin-djangocon-jp-2021)
+
 ### Command
 
 ```sh
