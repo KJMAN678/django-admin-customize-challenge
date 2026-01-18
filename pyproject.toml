@@ -1,0 +1,46 @@
+[project]
+name = "django_project"
+version = "0.1.0"
+description = "django project"
+readme = "README.md"
+requires-python = "<3.14, >=3.13"
+dependencies = [
+    "Django==6.0.1",
+    "psycopg2==2.9.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.14.11",
+    "pytest==9.0.2",
+    "django-debug-toolbar==6.1.0",
+    "pytest-django==4.11.1",
+    "factory-boy==3.3.3",
+    "djlint==1.36.4",
+    "django-stubs==5.2.8",
+    "pyrefly==0.48.0",
+    "djcheckup==0.6.0",
+]
+
+[tool.uv]
+link-mode = "copy"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
+
+[tool.ruff.lint]
+ignore = [
+]
+
+select = [
+   "I",
+]
+
+[tool.pyrefly]
+project-includes = [
+    "**/*.py*",
+    "**/*.ipynb",
+]

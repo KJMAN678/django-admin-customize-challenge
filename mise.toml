@@ -1,0 +1,48 @@
+[env]
+_.file = ".env"
+
+[tools]
+
+[tasks.remake_container]
+description = "コンテナを再作成"
+run = """
+docker compose down
+docker compose build
+docker compose up -d
+"""
+
+[tasks.make_envrc]
+description = "環境変数ファイルを作成"
+run = """
+if [ ! -f .env ]
+then
+  touch .env
+  cp .env.example .env
+fi
+"""
+
+
+[tasks.lint]
+description = "lint"
+run = """
+docker compose exec backend ruff check .
+docker compose exec backend pyrefly check --summarize-errors
+docker compose exec backend pyrefly check --suppress-errors
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --check
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --lint
+"""
+
+[tasks.fix]
+description = "fix"
+run = """
+docker compose exec backend ruff check . --fix
+docker compose exec backend ruff format .
+docker compose exec backend pyrefly check --remove-unused-ignores
+docker compose exec backend djlint templates/*/*.html --extension=html.j2 --reformat
+"""
+
+[tasks.test]
+description = "test"
+run = """
+docker compose exec backend pytest
+"""

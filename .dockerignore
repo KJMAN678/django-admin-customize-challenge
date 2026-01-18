@@ -1,0 +1,12 @@
+.envrc
+.envrc.example
+Dockerfile
+docker-compose.yml
+LICENSE
+make_envrc.sh
+.venv
+.ruff_cache
+.pytest_cache
+.mypy_cache
+__pycache__
+.git
